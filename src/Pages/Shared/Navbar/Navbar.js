@@ -9,7 +9,7 @@ const Navbar = () => {
         <li><Link to='/'>Login</Link></li>
     </>
     return (
-        <div className="navbar flex justify-evenly">
+        <div className="navbar flex justify-between">
             <div className="navbar-start ">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
