@@ -17,19 +17,21 @@ const ProductCategories = () => {
         return <Loader></Loader>
     }
 
-   /*  const handleCategory = (id) => {
-        console.log(id)
-    } */
+    /*  const handleCategory = (id) => {
+         console.log(id)
+     } */
     // onClick={() => handleCategory(category._id)}
     return (
         <div className='mt-16'>
-            <p className='text-center font-bold text-3xl mb-4'>All Category are :</p>
-            {
-                categories.map(category => <div className='text-center' key={category._id}>
+            {/* <p className='text-center font-bold text-3xl mb-4'>All Category are :</p> */}
+            <div className='grid grid-cols-3 gap-4 mb-4'>
+                {
+                    categories.map(category => <div className='text-center border bg-info' key={category._id}>
 
-                    <p   className='p-2 font-bold text-2xl' ><Link to={`/products/${category._id}`}>{category.name}</Link></p>
-                </div>)
-            }
+                        <p className='p-2 font-bold text-2xl text-center' ><Link to={`/products/${category._id}`}>{category.name}</Link></p>
+                    </div>)
+                }
+            </div>
         </div>
     );
 };
