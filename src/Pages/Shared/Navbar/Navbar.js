@@ -6,7 +6,7 @@ const Navbar = () => {
     const navMenu = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/'>Blog</Link></li>
-        <li><Link to='/'>Login</Link></li>
+        <li><Link to='/login'>Login</Link></li>
     </>
     return (
         <div className="navbar flex justify-between">

@@ -1,23 +1,36 @@
 import React from 'react';
+
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Signup = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
 
-    const handleLogin = (data) => {
+
+
+    const handleSignup = (data) => {
         console.log(data);
-     
+
     }
 
 
     return (
         <div className="h-[600px] flex justify-center items-center text-slate-600">
             <div className='w-96 p-7'>
-                <h2 className='text-3xl text-center'>Login</h2>
+                <h2 className='text-3xl text-center'>Signup</h2>
 
-                <form onSubmit={handleSubmit(handleLogin)}>
+                <form onSubmit={handleSubmit(handleSignup)}>
+
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input type="text" {...register("name", {
+                            required: "Name is required"
+                        })} className="input input-bordered w-full max-w-xs" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
 
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
@@ -40,10 +53,10 @@ const Login = () => {
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </div>
 
-                    <input className='btn btn-dark w-full mt-4' value="Login" type="submit" />
+                    <input className='btn btn-dark w-full mt-4' value="Signup" type="submit" />
 
                 </form>
-                <p>Do not have an account? <Link className='text-secondary' to="/signup">Please Signup</Link></p>
+                <p>Already have an account? <Link className='text-secondary' to="/login">Please login</Link></p>
 
 
                 <div className="divider text-slate-600">OR</div>
@@ -53,4 +66,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;

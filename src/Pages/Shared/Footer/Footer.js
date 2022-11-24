@@ -18,6 +18,7 @@ const Footer = () => {
                     <p>Copyright © 2022 - All right reserved by Bike Sales</p>
                 </div>
             </div>
+            
 
             <div>
                 <span className="footer-title">Newsletter</span>
