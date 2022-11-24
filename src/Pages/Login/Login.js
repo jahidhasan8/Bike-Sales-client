@@ -1,15 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const {logIn,googleLogin}=useContext(AuthContext)
     const googleProvider = new GoogleAuthProvider()
+    const location=useLocation()
+    const navigate=useNavigate()
+    const[userEmail,setUserEmail]=useState('')
+    const[token]=useToken(userEmail)
+
+    const from=location.state?.from?.pathname || '/'
+     
+    if(token){
+        navigate(from,{replace:true})
+    }
 
     const handleLogin = (data) => {
         console.log(data);
@@ -19,8 +30,8 @@ const Login = () => {
         .then(result=>{
             const user=result.user 
             console.log(user)
+            setUserEmail(data.email)
             toast.success(' login successful')
-           
         })
         .catch(error=>{
             console.log(error.message)

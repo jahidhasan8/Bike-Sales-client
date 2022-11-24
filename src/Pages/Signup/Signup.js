@@ -1,15 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Signup = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { createUser,updateUser } = useContext(AuthContext)
-
+    const [userEmail, setUserEmail] = useState('')
+    const navigate = useNavigate()
+    const [token] = useToken(userEmail)
+    
+    if (token) {
+        navigate('/')
+    }
 
     const handleSignup = (data) => {
         // console.log(data);
@@ -32,6 +39,7 @@ const Signup = () => {
 
             .catch(error => {
                 toast.error(error.message)
+                
             })
     }
     
@@ -48,7 +56,7 @@ const Signup = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-    
+                setUserEmail(email)
             })
     }
 
@@ -86,7 +94,7 @@ const Signup = () => {
                         <select {...register('accountType')} className="select  input-bordered w-full max-w-xs">
                             <option disabled >Please select a option?</option>
                             <option value="seller">Seller</option>
-                            <option value="user">Buyer</option>
+                            <option value="buyer">Buyer</option>
                         </select>
                     </div>
 

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Navbar = () => {
-      const{user,logOut}=useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
-      const handleLogout = () => {
+    const handleLogout = () => {
         logOut()
             .then(() => { })
             .catch(error => toast.error(error.message))
@@ -16,9 +16,12 @@ const Navbar = () => {
         <li><Link to='/'>Blog</Link></li>
         {
             user?.uid ?
-            <li><Link onClick={handleLogout}>LogOut</Link></li>
-            :
-            <li><Link to='/login'>Login</Link></li>
+                <>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
+                    <li><Link onClick={handleLogout}>LogOut</Link></li>
+                </>
+                :
+                <li><Link to='/login'>Login</Link></li>
         }
     </>
     return (
@@ -39,7 +42,9 @@ const Navbar = () => {
                     {navMenu}
                 </ul>
             </div>
-
+            <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
         </div>
     );
 };
