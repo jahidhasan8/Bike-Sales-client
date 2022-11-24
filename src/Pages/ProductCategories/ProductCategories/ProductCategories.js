@@ -17,16 +17,17 @@ const ProductCategories = () => {
         return <Loader></Loader>
     }
 
-    const handleCategory = (id) => {
+   /*  const handleCategory = (id) => {
         console.log(id)
-    }
+    } */
+    // onClick={() => handleCategory(category._id)}
     return (
         <div className='mt-16'>
             <p className='text-center font-bold text-3xl mb-4'>All Category are :</p>
             {
                 categories.map(category => <div className='text-center' key={category._id}>
 
-                    <p  onClick={() => handleCategory(category._id)} className='p-2 font-bold text-2xl' ><Link>{category.name}</Link></p>
+                    <p   className='p-2 font-bold text-2xl' ><Link to={`/products/${category._id}`}>{category.name}</Link></p>
                 </div>)
             }
         </div>
