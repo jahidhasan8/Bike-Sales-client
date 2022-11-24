@@ -1,19 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Signup = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-
+    const { createUser,updateUser } = useContext(AuthContext)
 
 
     const handleSignup = (data) => {
-        console.log(data);
+        // console.log(data);
 
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user
+                // console.log(user);
+                toast.success('Account created successfully')
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUser(userInfo)
+                    .then(() => {
+                        saveUserInfo(data.name, data.email,data.accountType)
+
+                    })
+                    .catch(error => toast.error(error.message))
+            })
+
+            .catch(error => {
+                toast.error(error.message)
+            })
     }
-
+    
+    const saveUserInfo = (name, email,accountType) => {
+        const user = { name, email,accountType }
+    
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+    
+            })
+    }
 
     return (
         <div className="h-[600px] flex justify-center items-center text-slate-600">
@@ -44,6 +81,17 @@ const Signup = () => {
 
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
+                            <span className="label-text">Options</span>
+                        </label>
+                        <select {...register('accountType')} className="select  input-bordered w-full max-w-xs">
+                            <option disabled >Please select a option?</option>
+                            <option value="seller">Seller</option>
+                            <option value="user">Buyer</option>
+                        </select>
+                    </div>
+
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
                             <span className="label-text">Password</span>
                         </label>
                         <input type="password" {...register('password', {
@@ -57,10 +105,6 @@ const Signup = () => {
 
                 </form>
                 <p>Already have an account? <Link className='text-secondary' to="/login">Please login</Link></p>
-
-
-                <div className="divider text-slate-600">OR</div>
-                <button className='btn btn-outline w-full btn-dark'>Login With Google</button>
             </div>
         </div>
     );

@@ -1,14 +1,45 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
+    const {logIn,googleLogin}=useContext(AuthContext)
+    const googleProvider = new GoogleAuthProvider()
 
     const handleLogin = (data) => {
         console.log(data);
+
+        logIn(data.email,data.password)
+
+        .then(result=>{
+            const user=result.user 
+            console.log(user)
+            toast.success(' login successful')
+           
+        })
+        .catch(error=>{
+            console.log(error.message)
+            toast.error(error.message)
+        
+        })
      
+    }
+
+    const handleGoogleLogin=()=>{
+        googleLogin(googleProvider)
+        .then(result=>{
+            const user=result.user
+            console.log(user);
+            toast.success('Google login Successful')
+        })
+        .catch(error=>{
+            toast.error(error.message)
+        })
     }
 
 
@@ -47,7 +78,7 @@ const Login = () => {
 
 
                 <div className="divider text-slate-600">OR</div>
-                <button className='btn btn-outline w-full btn-dark'>Login With Google</button>
+                <button onClick={handleGoogleLogin} className='btn btn-outline w-full btn-dark'>Login With Google</button>
             </div>
         </div>
     );
