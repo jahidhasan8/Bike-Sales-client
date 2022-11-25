@@ -11,6 +11,7 @@ import Login from "../../Pages/Login/Login";
 import Products from "../../Pages/ProductCategories/Products/Products";
 import Signup from "../../Pages/Signup/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 
 export const router=createBrowserRouter([
@@ -54,7 +55,7 @@ export const router=createBrowserRouter([
             },
             {
                 path: '/dashboard/addproduct',
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
     
            
