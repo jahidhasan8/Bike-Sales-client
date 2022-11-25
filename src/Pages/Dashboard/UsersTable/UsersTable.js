@@ -11,7 +11,6 @@ const UsersTable = ({ users,refetch }) => {
     }
 
     const handleDelete = (user) => {
-        console.log(user);
 
         fetch(`http://localhost:5000/users/${user._id}`, {
 
@@ -23,7 +22,7 @@ const UsersTable = ({ users,refetch }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.deletedCount >0) {
 
                     refetch()
