@@ -28,7 +28,7 @@ const ProductCategories = () => {
                 {
                     categories.map(category => <div className='text-center border bg-info' key={category._id}>
 
-                        <p className='p-2 font-bold text-2xl text-center' ><Link to={`/products/${category._id}`}>{category.name}</Link></p>
+                <p className='p-2 font-bold text-2xl text-center' ><Link to={`/products/${category._id}`}>{category.name}</Link></p>
                     </div>)
                 }
             </div>
