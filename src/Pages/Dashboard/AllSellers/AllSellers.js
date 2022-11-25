@@ -35,6 +35,7 @@ const AllSellers = () => {
 
            <UsersTable 
            users={users}
+           refetch={refetch}
            ></UsersTable>
         
         </div>
