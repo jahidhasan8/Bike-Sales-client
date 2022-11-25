@@ -9,8 +9,9 @@ import useToken from '../../hooks/useToken';
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const {logIn,googleLogin}=useContext(AuthContext)
+    const {logIn,googleLogin,updateUser}=useContext(AuthContext)
     const googleProvider = new GoogleAuthProvider()
+
     const location=useLocation()
     const navigate=useNavigate()
     const[userEmail,setUserEmail]=useState('')
@@ -32,6 +33,7 @@ const Login = () => {
             console.log(user)
             setUserEmail(data.email)
             toast.success(' login successful')
+           
         })
         .catch(error=>{
             console.log(error.message)
@@ -42,17 +44,44 @@ const Login = () => {
     }
 
     const handleGoogleLogin=()=>{
+
         googleLogin(googleProvider)
         .then(result=>{
             const user=result.user
             console.log(user);
             toast.success('Google login Successful')
+
+             const userInfo = {
+                displayName: user.name
+            }
+            updateUser(userInfo)
+                .then(() => {
+                    saveUserInfo( user.displayName,user.email)
+
+                })
+                .catch(error => toast.error(error.message))
         })
         .catch(error=>{
             toast.error(error.message)
         })
     }
 
+    const saveUserInfo = (name, email) => {
+        const user = { name, email }
+    
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setUserEmail(email)
+            })
+    }
 
     return (
         <div className="h-[600px] flex justify-center items-center text-slate-600">

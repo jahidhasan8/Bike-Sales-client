@@ -18,7 +18,7 @@ const MyOrders = () => {
             const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
 
                 headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `bearer ${localStorage.getItem('jwToken')}`
                 }
             });
             const data = await res.json();
@@ -43,6 +43,7 @@ const MyOrders = () => {
                             <th>Payment</th>
                         </tr>
                     </thead>
+
                     <tbody>
 
                         {
