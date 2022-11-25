@@ -6,7 +6,7 @@ import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashboardLayout = () => {
 
-    const {user}=useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const [account] = useAccount(user?.email)
 
@@ -26,13 +26,28 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80  text-base-content">
 
                         <li><Link to="/dashboard">My Orders</Link></li>
-                        
 
-                         {
-                            account==='seller' &&
+
+                        {
+                            account === 'seller' &&
+                            <>
+
                             <li><Link to="/dashboard/addproduct">Add Product</Link></li>
-                         }
-                          {/* {
+
+
+                            </>
+                        }
+
+                        {
+                            account === 'admin' &&
+                            <>
+                            
+                            <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
+                            <li><Link to="/dashboard/allbuyers">All Buyers</Link></li>
+
+                            </>
+                        }
+                        {/* {
                             isAdmin && <>
 
                                 <li><Link to="/dashboard/allusers">All Users</Link></li>

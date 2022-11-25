@@ -9,7 +9,7 @@ const AddProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const imgKey = process.env.REACT_APP_imgbb_key;
 
-    
+
     const { data: categories = [], isLoading } = useQuery({
 
         queryKey: ['categories'],
@@ -23,6 +23,13 @@ const AddProduct = () => {
     })
     const handleAddProduct = (data) => {
         console.log(data);
+        let date = new Date()
+        let options = {
+            weekday: "long", year: "numeric", month: "short",
+            day: "numeric", hour: "2-digit", minute: "2-digit"
+        };
+        const formatDate=(date.toLocaleTimeString("en-us", options));
+
         const image = data.image[0]
         const formData = new FormData();
 
@@ -40,16 +47,16 @@ const AddProduct = () => {
                     const product = {
                         sellerName: data.sellerName,
                         mobile: data.mobile,
-                        productName:data.productName,
-                        condition:data.condition,
-                        originalPrice:data.originalPrice,
-                        resalePrice:data.resalePrice,
-                        purchaseYear:data.purchaseYear,
-                        location:data.location,
-                        categoryId:data.category,
-                        description:data.description,
+                        productName: data.productName,
+                        condition: data.condition,
+                        originalPrice: data.originalPrice,
+                        resalePrice: data.resalePrice,
+                        purchaseYear: data.purchaseYear,
+                        location: data.location,
+                        categoryId: data.category,
+                        description: data.description,
                         image: imageData.data.url,
-                        date:new Date()
+                        date: formatDate
 
                     }
 
@@ -66,7 +73,7 @@ const AddProduct = () => {
                         .then(result => {
                             console.log(result);
                             toast.success('product added successfully')
-                        
+
                         })
                 }
 
@@ -113,18 +120,18 @@ const AddProduct = () => {
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.productName && <p className='text-red-400'>{errors.productName.message}</p>}
                 </div>
-                  
+
                 <div className="form-control w-full max-w-xs">
-                        <label className="label">
-                            <span className="label-text">Condition</span>
-                        </label>
-                        <select {...register('condition')} className="select  input-bordered w-full max-w-xs">
-                            <option disabled >Please select a condition?</option>
-                            <option value="excellent">Excellent</option>
-                            <option value="good">Good</option>
-                            <option value="fair">Fair</option>
-                        </select>
-                    </div>
+                    <label className="label">
+                        <span className="label-text">Condition</span>
+                    </label>
+                    <select {...register('condition')} className="select  input-bordered w-full max-w-xs">
+                        <option disabled >Please select a condition?</option>
+                        <option value="excellent">Excellent</option>
+                        <option value="good">Good</option>
+                        <option value="fair">Fair</option>
+                    </select>
+                </div>
 
                 <div className="form-control w-full max-w-xs">
                     <label className="label">
@@ -179,7 +186,7 @@ const AddProduct = () => {
 
                     </select>
                 </div>
-                   
+
                 <div className="form-control w-full max-w-xs">
                     <label className="label">
                         <span className="label-text">Description</span>

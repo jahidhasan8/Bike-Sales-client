@@ -10,10 +10,10 @@ const AdminRoute = ({ children }) => {
 
     const { user, loading } = useContext(AuthContext)
     const location = useLocation()
-     const[account]=useAccount()
+     const[account,isLoading]=useAccount(user?.email)
 
 
-    if (loading) {
+    if (loading || isLoading) {
         return <Loader></Loader>
     }
     if (user && account==='admin') {
