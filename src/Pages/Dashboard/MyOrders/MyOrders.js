@@ -7,8 +7,6 @@ const MyOrders = () => {
 
     const { user } = useContext(AuthContext)
 
-    // const url = `http://localhost:5000/bookings?email=${user?.email}`
-
     const { data: bookings = [] } = useQuery({
 
         queryKey: ['bookings', user?.email],
@@ -61,7 +59,15 @@ const MyOrders = () => {
                                 <td>{booking.productName}</td>
                                 <td>{booking.price}</td>
                                 <td>
-                                  {<Link><button className='btn btn-info btn-sm'>Pay</button></Link>}
+                                  {
+                                    booking?.price && !booking.paid &&
+                                    <Link to={`/dashboard/payment/${booking._id}`}><button  className='btn btn-info btn-sm'>Pay</button></Link>
+                                    
+                                    }
+                                    {
+                                        booking?.price && booking.paid &&
+                                        <button disabled className='btn btn-sm btn-info'>Paid</button>
+                                    }
                                    
                                 </td>
                             </tr>
