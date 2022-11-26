@@ -97,7 +97,7 @@ const CheckoutForm = ({ bookingData }) => {
                     'content-type': 'application/json',
                     authorization:`bearer ${localStorage.getItem('jwToken')}`
                 },
-                body:json.stringify(payment)
+                body: JSON.stringify(payment)
             })
             .then(res=>res.json())
             .then(data=>{
