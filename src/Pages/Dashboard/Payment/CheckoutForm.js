@@ -1,6 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { json } from 'react-router-dom';
 
 const CheckoutForm = ({ bookingData }) => {
 
@@ -10,7 +11,7 @@ const CheckoutForm = ({ bookingData }) => {
     const [loading, setLoading] = useState(false)
     const stripe = useStripe();
     const elements = useElements();
-    const { price,productName,email } = bookingData
+    const { price,productName,email,_id } = bookingData
     const [clientSecret, setClientSecret] = useState("");
 
     useEffect(() => {
@@ -82,9 +83,30 @@ const CheckoutForm = ({ bookingData }) => {
         }
 
         if (paymentIntent.status === 'succeeded'){
-            setSuccessMessage('Your Payment Successful')
-            setTransactionId(paymentIntent.id)
-            toast.success('Your Payment Successful')
+            
+            const payment={
+                price,
+                transactionId:paymentIntent.id,
+                bookingId:_id,
+                email
+
+            }
+            fetch('http://localhost:5000/payments',{
+                method:'POST',
+                headers:{
+                    'content-type': 'application/json',
+                    authorization:`bearer ${localStorage.getItem('jwToken')}`
+                },
+                body:json.stringify(payment)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                if(data.insertedId){
+                    setSuccessMessage('Your Payment Successful')
+                    setTransactionId(paymentIntent.id)
+                    toast.success('Your Payment Successful')
+                }
+            })
         }
         setLoading(false)
     
