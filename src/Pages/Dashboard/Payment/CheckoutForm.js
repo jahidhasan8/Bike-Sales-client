@@ -5,6 +5,9 @@ import toast from 'react-hot-toast';
 const CheckoutForm = ({ bookingData }) => {
 
     const [error, setError] = useState('')
+    const [successMessage, setSuccessMessage] = useState('')
+    const [transactionId, setTransactionId] = useState('')
+    const [loading, setLoading] = useState(false)
     const stripe = useStripe();
     const elements = useElements();
     const { price,productName,email } = bookingData
@@ -56,6 +59,8 @@ const CheckoutForm = ({ bookingData }) => {
             console.log('[PaymentMethod]', paymentMethod);
             setError('')
         }
+        setSuccessMessage('')
+        setLoading(true)
 
         const { paymentIntent, error:confirmError } = await stripe.confirmCardPayment(
            clientSecret,
@@ -75,9 +80,17 @@ const CheckoutForm = ({ bookingData }) => {
             toast.error(confirmError.message)
             return
         }
-        console.log(paymentIntent); 
+
+        if (paymentIntent.status === 'succeeded'){
+            setSuccessMessage('Your Payment Successful')
+            setTransactionId(paymentIntent.id)
+            toast.success('Your Payment Successful')
+        }
+        setLoading(false)
+    
 
     }
+
     return (
         <div>
             <form onSubmit={handlePayment}>
@@ -97,19 +110,19 @@ const CheckoutForm = ({ bookingData }) => {
                         },
                     }}
                 />
-                <button className='btn btn-sm mt-5 btn-info' disabled={!stripe || !clientSecret} type="submit">
+                <button className='btn btn-sm mt-5 btn-info' disabled={!stripe || !clientSecret || loading} type="submit">
                     Pay
                 </button>
             </form>
 
-            {/* <p className='text-red-600'>{cardError}</p>
+            <p className='text-red-400'>{error}</p>
             {
-                success && <div>
-                    <p className='text-green-500'>{success}</p>
-                    <p>Your transactionId <span className='font-bold'>{transactionId}</span></p>
+                successMessage && <div>
+                    <p className='font-bold mt-4'>{successMessage}</p>
+                    <p>Your transactionId is <span className='font-bold'>{transactionId}</span></p>
                 </div>
-            } */}
-            <p className='text-red-600'>{error}</p>
+            }
+            
         </div>
     );
 };
