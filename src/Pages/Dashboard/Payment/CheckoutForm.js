@@ -7,7 +7,7 @@ const CheckoutForm = ({ bookingData }) => {
     const [error, setError] = useState('')
     const stripe = useStripe();
     const elements = useElements();
-    const { price,productName,mobile,email } = bookingData
+    const { price,productName,email } = bookingData
     const [clientSecret, setClientSecret] = useState("");
 
     useEffect(() => {
@@ -63,12 +63,19 @@ const CheckoutForm = ({ bookingData }) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        productName: productName,
+                        name: productName,
                         email:email
                     },
                 },
             },
         );
+
+        if(confirmError){
+             setError(confirmError.message)
+            toast.error(confirmError.message)
+            return
+        }
+        console.log(paymentIntent); 
 
     }
     return (
@@ -95,7 +102,13 @@ const CheckoutForm = ({ bookingData }) => {
                 </button>
             </form>
 
-           
+            {/* <p className='text-red-600'>{cardError}</p>
+            {
+                success && <div>
+                    <p className='text-green-500'>{success}</p>
+                    <p>Your transactionId <span className='font-bold'>{transactionId}</span></p>
+                </div>
+            } */}
             <p className='text-red-600'>{error}</p>
         </div>
     );
