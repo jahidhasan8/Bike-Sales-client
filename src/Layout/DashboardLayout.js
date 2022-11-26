@@ -26,17 +26,21 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80  text-base-content">
 
                         <li><Link to="/dashboard">Dashboard</Link></li>
-                        
-                        {
-                            <li><Link to="/dashboard/myorders">My Orders</Link></li>
-                        }
 
+                        {
+                            
+                            account ==='buyer' &&
+                        <li><Link to="/dashboard/myorders">My Orders</Link></li>
+                            
+
+                        }
 
                         {
                             account === 'seller' &&
                             <>
 
-                            <li><Link to="/dashboard/addproduct">Add Product</Link></li>
+                                <li><Link to="/dashboard/addproduct">Add Product</Link></li>
+                                <li><Link to="/dashboard/myproducts">My Products</Link></li>
 
 
                             </>
@@ -46,8 +50,8 @@ const DashboardLayout = () => {
                             account === 'admin' &&
                             <>
 
-                            <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
-                            <li><Link to="/dashboard/allbuyers">All Buyers</Link></li>
+                                <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
+                                <li><Link to="/dashboard/allbuyers">All Buyers</Link></li>
 
                             </>
                         }

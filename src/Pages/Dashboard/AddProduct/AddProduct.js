@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../Shared/Loader/Loader';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const AddProduct = () => {
 
+    const { user } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm()
     const imgKey = process.env.REACT_APP_imgbb_key;
 
@@ -28,7 +30,7 @@ const AddProduct = () => {
             weekday: "long", year: "numeric", month: "short",
             day: "numeric", hour: "2-digit", minute: "2-digit"
         };
-        const formatDate=(date.toLocaleTimeString("en-us", options));
+        const formatDate = (date.toLocaleTimeString("en-us", options));
 
         const image = data.image[0]
         const formData = new FormData();
@@ -47,6 +49,7 @@ const AddProduct = () => {
                     const product = {
                         sellerName: data.sellerName,
                         mobile: data.mobile,
+                        sellerEmail:user?.email,
                         productName: data.productName,
                         condition: data.condition,
                         originalPrice: data.originalPrice,
