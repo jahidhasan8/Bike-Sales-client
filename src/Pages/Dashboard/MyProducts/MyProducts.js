@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 
 const MyProducts = () => {
 
     const { user } = useContext(AuthContext)
 
-    const { data: products = [] } = useQuery({
+    const { data: products = [],refetch } = useQuery({
 
         queryKey: ['products', user?.email],
 
@@ -25,6 +26,24 @@ const MyProducts = () => {
         }
     })
 
+    const handleAdvertiseProduct = (product) => {
+        console.log(product);
+
+        fetch(`http://localhost:5000/products/${product._id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('jwToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log((data));
+                if (data.modifiedCount) {
+                    toast.success('Advertise Successful')
+                    refetch()
+                }
+            })
+    }
 
     return (
         <div>
@@ -63,7 +82,12 @@ const MyProducts = () => {
                                 <td>{product.resalePrice}</td>
                                 <td>available</td>
                                 <td>
-                                    {<Link><button className='btn btn-info btn-sm'>Advertise</button></Link>}
+                                    {
+                                        product.advertise?
+                                        <button disabled className='btn btn-sm font-bold '>Advertised</button>
+                                        :
+                                        <button onClick={() => handleAdvertiseProduct(product)} className='btn btn-info btn-sm'>Advertise</button>
+                                    }
 
                                 </td>
                                 <td>
