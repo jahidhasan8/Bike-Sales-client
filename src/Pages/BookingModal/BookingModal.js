@@ -6,7 +6,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 const BookingModal = ({ product,setProductInfo }) => {
 
     const { user } = useContext(AuthContext)
-    const { productName, resalePrice,image } = product
+    const { productName,_id, resalePrice,image } = product
    
 
 
@@ -26,7 +26,9 @@ const BookingModal = ({ product,setProductInfo }) => {
             email,
             price,
             meeting,
-            image
+            image,
+            productId:_id
+
 
         }
 

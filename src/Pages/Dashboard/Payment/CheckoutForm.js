@@ -1,7 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { json } from 'react-router-dom';
 
 const CheckoutForm = ({ bookingData }) => {
 
@@ -11,7 +10,7 @@ const CheckoutForm = ({ bookingData }) => {
     const [loading, setLoading] = useState(false)
     const stripe = useStripe();
     const elements = useElements();
-    const { price,productName,email,_id } = bookingData
+    const { price,productName,productId,email,_id } = bookingData
     const [clientSecret, setClientSecret] = useState("");
 
     useEffect(() => {
@@ -70,7 +69,8 @@ const CheckoutForm = ({ bookingData }) => {
                     card: card,
                     billing_details: {
                         name: productName,
-                        email:email
+                        email:email,
+                    
                     },
                 },
             },
@@ -88,7 +88,8 @@ const CheckoutForm = ({ bookingData }) => {
                 price,
                 transactionId:paymentIntent.id,
                 bookingId:_id,
-                email
+                email,
+                productId
 
             }
             fetch('http://localhost:5000/payments',{

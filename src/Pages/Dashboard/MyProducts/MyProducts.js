@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../contexts/AuthProvider';
-import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 
@@ -100,7 +99,15 @@ const MyProducts = () => {
                                 </td>
                                 <td>{product.productName}</td>
                                 <td>{product.resalePrice}</td>
-                                <td>available</td>
+                                <td >
+
+                                    {
+                                        product?.sold ?
+                                        <p>Sold</p>
+                                        :
+                                        <p>Available</p>
+                                    }
+                                </td>
                                 <td>
                                     {
                                         product.advertise ?

@@ -24,12 +24,12 @@ const AdvertiseProducts = () => {
         }
     })
     
-
+   console.log(advertised);
     return (
         <div className='mt-14'>
 
             {
-                advertised?.length && 
+                advertised.length && 
                 <h2 className='text-xl font-bold text-center'>Advertised products are</h2>
             }
 
