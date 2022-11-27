@@ -1,36 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from '../../Shared/Loader/Loader';
-import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
+import toast from 'react-hot-toast';
+
 const ProductCategories = () => {
 
-    const { data: categories = [], isLoading } = useQuery({
-        queryKey: ["categories"],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories')
-            const data = await res.json()
-            return data
-        }
-    })
-
-    if (isLoading) {
+     const [categories, setCategories]=useState([])
+     const[loading,setLoading]=useState(true)
+     useEffect(()=>{
+         
+        axios.get('http://localhost:5000/categories')
+        .then(data=>{
+            
+            setCategories(data.data)
+            setLoading(false)
+            
+        })
+        .catch((error) => {
+            toast.error(error.message);
+         });
+     },[])
+    
+     if(loading){
         return <Loader></Loader>
-    }
-
-    /*  const handleCategory = (id) => {
-         console.log(id)
-     } */
-    // onClick={() => handleCategory(category._id)}
+     }
+  
     return (
         <div className='mt-16'>
-            {/* <p className='text-center font-bold text-3xl mb-4'>All Category are :</p> */}
+           
             <div className='grid grid-cols-3 gap-4 mb-4'>
                 {
                     categories.map(category => <div className='text-center border bg-info' key={category._id}>
 
-                <p className='p-2 font-bold text-2xl text-center' ><Link to={`/products/${category._id}`}>{category.name}</Link></p>
+                <p className='p-2 font-bold text-2xl text-center text-white' ><Link to={`/products/${category._id}`}>{category.name}</Link></p>
                     </div>)
                 }
+                
             </div>
         </div>
     );
