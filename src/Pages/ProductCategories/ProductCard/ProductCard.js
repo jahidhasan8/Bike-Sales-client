@@ -1,11 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Checkmark } from 'react-checkmark'
-import { AuthContext } from '../../../contexts/AuthProvider';
 
 const ProductCard = ({ product, setProductInfo }) => {
-
-    const { user } = useContext(AuthContext)
-    
 
     return (
 

@@ -24,7 +24,7 @@ const AdvertiseProducts = () => {
         }
     })
     
-   console.log(advertised);
+   refetch()
     return (
         <div className='mt-14'>
 

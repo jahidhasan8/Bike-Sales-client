@@ -19,6 +19,7 @@ const DashboardLayout = () => {
                 <div className="drawer-content">
 
                     <Outlet></Outlet>
+                    
 
                 </div>
                 <div className="drawer-side">
