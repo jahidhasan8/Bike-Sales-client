@@ -103,9 +103,9 @@ const MyProducts = () => {
 
                                     {
                                         product?.sold ?
-                                        <p>Sold</p>
+                                        <p className='font-bold'>Sold</p>
                                         :
-                                        <p>Available</p>
+                                        <p className='font-bold'>Available</p>
                                     }
                                 </td>
                                 <td>
