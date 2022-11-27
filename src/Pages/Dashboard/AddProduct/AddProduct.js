@@ -4,12 +4,14 @@ import Loader from '../../Shared/Loader/Loader';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
 
     const { user } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm()
     const imgKey = process.env.REACT_APP_imgbb_key;
+    const navigate = useNavigate()
 
 
     const { data: categories = [], isLoading } = useQuery({
@@ -49,7 +51,7 @@ const AddProduct = () => {
                     const product = {
                         sellerName: data.sellerName,
                         mobile: data.mobile,
-                        sellerEmail:user?.email,
+                        sellerEmail: user?.email,
                         productName: data.productName,
                         condition: data.condition,
                         originalPrice: data.originalPrice,
@@ -63,7 +65,7 @@ const AddProduct = () => {
 
                     }
 
-                    //  save products to mongodb
+                    //  saving products to mongodb by post method
                     fetch('http://localhost:5000/products', {
                         method: 'POST',
                         headers: {
@@ -76,6 +78,7 @@ const AddProduct = () => {
                         .then(result => {
                             console.log(result);
                             toast.success('product added successfully')
+                            navigate('/dashboard/myproducts')
 
                         })
                 }
