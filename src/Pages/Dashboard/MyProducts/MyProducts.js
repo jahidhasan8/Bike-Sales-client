@@ -9,7 +9,7 @@ const MyProducts = () => {
 
     const { user } = useContext(AuthContext)
 
-    const { data: products = [],refetch } = useQuery({
+    const { data: products = [], refetch } = useQuery({
 
         queryKey: ['products', user?.email],
 
@@ -41,6 +41,26 @@ const MyProducts = () => {
                 if (data.modifiedCount) {
                     toast.success('Advertise Successful')
                     refetch()
+                }
+            })
+    }
+
+    const handleDeleteProduct = (product) => {
+
+        fetch(`http://localhost:5000/products/${product._id}`, {
+
+            method: 'DELETE',
+
+            headers: {
+                authorization: `bearer ${localStorage.getItem('jwToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+
+                    refetch()
+                    toast.success(` ${product.productName} deleted successfully`)
                 }
             })
     }
@@ -83,15 +103,15 @@ const MyProducts = () => {
                                 <td>available</td>
                                 <td>
                                     {
-                                        product.advertise?
-                                        <button disabled className='btn btn-sm font-bold '>Advertised</button>
-                                        :
-                                        <button onClick={() => handleAdvertiseProduct(product)} className='btn btn-info btn-sm'>Advertise</button>
+                                        product.advertise ?
+                                            <button disabled className='btn btn-sm font-bold '>Advertised</button>
+                                            :
+                                            <button onClick={() => handleAdvertiseProduct(product)} className='btn btn-info btn-sm'>Advertise</button>
                                     }
 
                                 </td>
                                 <td>
-                                    <button className='btn btn-error btn-sm'>Delete</button>
+                                    <button onClick={()=>handleDeleteProduct(product)} className='btn btn-error btn-sm'>Delete</button>
                                 </td>
                             </tr>
                             )
