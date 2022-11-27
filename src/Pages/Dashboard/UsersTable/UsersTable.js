@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import DeleteModal from '../../Shared/DeleteModal/DeleteModal';
 
-const UsersTable = ({ users,refetch }) => {
+const UsersTable = ({ users, refetch }) => {
 
     const [deleteField, setdeleteField] = useState(null)
 
@@ -23,14 +23,14 @@ const UsersTable = ({ users,refetch }) => {
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
-                if (data.deletedCount >0) {
+                if (data.deletedCount > 0) {
 
                     refetch()
                     toast.success(` ${user.name} deleted successfully`)
                 }
             })
     }
-   
+
     // for seller verify status updating 
     const handleVerifySeller = (id) => {
         console.log(id);
@@ -38,7 +38,7 @@ const UsersTable = ({ users,refetch }) => {
         fetch(`http://localhost:5000/users/${id}`, {
             method: 'PUT',
             headers: {
-                authorization: `Bearer ${localStorage.getItem('jwToken')}`
+                authorization: `bearer ${localStorage.getItem('jwToken')}`
             }
         })
             .then(res => res.json())
@@ -61,7 +61,9 @@ const UsersTable = ({ users,refetch }) => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
+
                             <th>Verify Status</th>
+
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -74,11 +76,21 @@ const UsersTable = ({ users,refetch }) => {
                                 <td>{user.email}</td>
                                 <td>
 
-                                   {
-                                       user.accountType==='seller' && user.verify?
-                                        <button disabled className='btn btn-sm font-bold '>verified</button>
-                                        :
-                                        <button onClick={() => handleVerifySeller(user._id)} className='btn btn-info btn-sm'>Verify</button>
+
+                                    {
+                                        user.accountType==='seller' &&
+                                        <>
+                                            {
+                                                user.accountType === 'seller' && user.verify ?
+                                                    <button disabled className='btn btn-sm font-bold '>verified</button>
+                                                    :
+
+
+                                                    <button onClick={() => handleVerifySeller(user._id)} className='btn btn-info btn-sm'>Verify</button>
+
+                                            }
+
+                                        </>
                                     }
 
                                 </td>

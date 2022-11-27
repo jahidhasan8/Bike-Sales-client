@@ -7,10 +7,14 @@ const useAccount = email => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/account/${email}`)
+            fetch(`http://localhost:5000/users/account/${email}`,{
+                headers:{
+                    authorization:`bearer ${localStorage.getItem('jwToken')}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                
                     setAccount(data.account)
                     setIsLoading(false)
                 })

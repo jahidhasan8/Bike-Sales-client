@@ -9,66 +9,66 @@ import useToken from '../../hooks/useToken';
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const {logIn,googleLogin,updateUser}=useContext(AuthContext)
+    const { logIn, googleLogin, updateUser } = useContext(AuthContext)
     const googleProvider = new GoogleAuthProvider()
 
-    const location=useLocation()
-    const navigate=useNavigate()
-    const[userEmail,setUserEmail]=useState('')
-    const[token]=useToken(userEmail)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const [userEmail, setUserEmail] = useState('')
+    const [token] = useToken(userEmail)
 
-    const from=location.state?.from?.pathname || '/'
-     
-    if(token){
-        navigate(from,{replace:true})
+    const from = location.state?.from?.pathname || '/'
+
+    if (token) {
+        navigate(from, { replace: true })
     }
 
     const handleLogin = (data) => {
         console.log(data);
 
-        logIn(data.email,data.password)
+        logIn(data.email, data.password)
 
-        .then(result=>{
-            const user=result.user 
-            console.log(user)
-            setUserEmail(data.email)
-            toast.success(' login successful')
-           
-        })
-        .catch(error=>{
-            console.log(error.message)
-            toast.error(error.message)
-        
-        })
-     
+            .then(result => {
+                const user = result.user
+                console.log(user)
+                setUserEmail(data.email)
+                toast.success(' login successful')
+
+            })
+            .catch(error => {
+                console.log(error.message)
+                toast.error(error.message)
+
+            })
+
     }
 
-    const handleGoogleLogin=()=>{
+    const handleGoogleLogin = () => {
 
         googleLogin(googleProvider)
-        .then(result=>{
-            const user=result.user
-            console.log(user);
-            toast.success('Google login Successful')
+            .then(result => {
+                const user = result.user
+                console.log(user);
+                toast.success('Google login Successful')
 
-             const userInfo = {
-                displayName: user.name
-            }
-            updateUser(userInfo)
-                .then(() => {
-                    saveUserInfo( user.displayName,user.email)
+                const userInfo = {
+                    displayName: user.name
+                }
+                updateUser(userInfo)
+                    .then(() => {
+                        saveUserInfo(user.displayName, user.email)
 
-                })
-                .catch(error => toast.error(error.message))
-        })
-        .catch(error=>{
-            toast.error(error.message)
-        })
+                    })
+                    .catch(error => toast.error(error.message))
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
     }
 
     const saveUserInfo = (name, email) => {
         const user = { name, email }
-    
+
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {

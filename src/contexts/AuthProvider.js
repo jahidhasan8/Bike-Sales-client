@@ -43,6 +43,7 @@ const googleLogin=(googleProvider)=>{
 //   logout user 
 
 const logOut=()=>{
+  localStorage.removeItem('jwToken')
     setLoading(true)
     return signOut(auth)
 }

@@ -19,7 +19,6 @@ const Signup = () => {
     }
 
     const handleSignup = (data) => {
-        // console.log(data);
 
         createUser(data.email, data.password)
             .then(result => {
@@ -50,6 +49,7 @@ const Signup = () => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
+                
             },
             body: JSON.stringify(user)
         })

@@ -6,7 +6,7 @@ import UsersTable from '../UsersTable/UsersTable';
 const AllSellers = () => {
 
     const { data: users = [], isLoading, refetch } = useQuery({
-    
+
         queryKey: ['users'],
         queryFn: async () => {
             try {
@@ -33,11 +33,11 @@ const AllSellers = () => {
         <div>
             <h2 className="text-3xl mb-6">All Sellers are: {users.length}</h2>
 
-           <UsersTable 
-           users={users}
-           refetch={refetch}
-           ></UsersTable>
-        
+            <UsersTable
+                users={users}
+                refetch={refetch}
+            ></UsersTable>
+
         </div>
     );
 };
