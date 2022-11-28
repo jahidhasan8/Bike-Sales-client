@@ -12,7 +12,7 @@ const Navbar = () => {
             .catch(error => toast.error(error.message))
     }
     const navMenu = <>
-        <li><Link to='/'>Home</Link></li>
+        <li><Link   to='/'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
         {
             user?.uid ?
@@ -25,24 +25,24 @@ const Navbar = () => {
         }
     </>
     return (
-        <div className="navbar flex justify-between bg-slate-600 text-white">
+        <div className="navbar flex justify-between  bg-slate-600 md:text-white font-bold">
             <div className="navbar-start ">
                 <div className="dropdown ">
-                    <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                    <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {navMenu}
                     </ul>
                 </div>
-                <Link to='/' className="btn btn-ghost normal-case text-2xl">Bike Sales</Link>
+                <Link to='/' className="btn btn-ghost normal-case text-2xl font-bold text-white">Bike Sales</Link>
             </div>
             <div className="navbar-center hidden lg:flex ">
                 <ul className="menu menu-horizontal p-0">
                     {navMenu}
                 </ul>
             </div>
-            <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
+            <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </label>
         </div>
