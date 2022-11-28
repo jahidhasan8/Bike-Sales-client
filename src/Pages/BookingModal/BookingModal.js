@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 
+
 const BookingModal = ({ product,setProductInfo }) => {
 
     const { user } = useContext(AuthContext)
@@ -47,7 +48,7 @@ const BookingModal = ({ product,setProductInfo }) => {
                 if (data.acknowledged) {
                     setProductInfo(null)
                     toast.success('Booking Successful')
-            
+                    
                 }
                 else {
                     toast.error(data.message)
@@ -55,8 +56,9 @@ const BookingModal = ({ product,setProductInfo }) => {
             })
 
     }  
- 
 
+   
+ 
         return (
             <div>
                 <input type="checkbox" id="booking-modal" className="modal-toggle" />
