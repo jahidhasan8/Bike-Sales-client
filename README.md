@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Bike Sales
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bike Sales is a platform on which you can buy and sell secondHand Bike.Right now we have three categories Bike.At Bike Sales, we make it so easy to connect people to buy, sell. - Fast & Easy Experience: Navigated buying and selling experience in Bangladesh which is simpler, faster, and easier. Shop and sell on the go and get your desired products in just a few clicks.
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+## About This Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In this project i have made a site that shows us Home page,Blog, Login page and Dashboard.This is fullstack MERN project.There have 2 types users sellers and Buyers and there have admin option.From Dashboard User will see their specific different options according to their role.Users can create account as a seller or buyer.Seller can post product and advertise product for sell.Buyer can buy product can report product.Admin can delete sellers also buyers also can delete reported products.In this project i have implemented stripe payment method.After booking product buyers can pay products from my orders page that will available on dashboard only for byers.Full site responsive for desktop and mobile device. I have also implemented latest technologies.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##Technologies Used for Building the site
 
-### `npm test`
+### `React JS `
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Full Project is Based on ReactJS. We have used many components to Build the site.
 
-### `npm run build`
+### `React Router Dom`
+I have used react router dom
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `Tailwind-CSS & DaisyUi`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I have Used Tailwind Css and DaisyUi component library to design my site .
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `React query(tanstack-query) & Axios`
+I have used Tanstack-query and axios for api call
 
-### `npm run eject`
+### `React-hook-form`
+I have used react hook form for getting form data
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### `Vercel`
+I have Used Vercel to Host Server Site .
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `Express`
+I have used express for writing server side code
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### `Firebase`
+Full Project is Based on Firebase.I have used Google and Email-Password Authentication.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### `React-Hot-Toast`
+I have used react hot toast for show error and successful toast messages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `Mongodb`
+I have used Mongodb database
 
-### Code Splitting
+### `Json webToken npm`
+I have used Json webToken npm for secure My review page also email password based based login system
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### `HTML & CSS`
 
-### Analyzing the Bundle Size
+HTML & CSS is a core part for building a site. I have also used HTML & CSS.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### `FIREBASE LIVE SITE LINK`
+[LiveSite](https://bike-sales-a4a21.web.app) --click to view Live Site
