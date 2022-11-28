@@ -31,7 +31,7 @@ const MyProducts = () => {
         fetch(`http://localhost:5000/products/${product._id}`, {
             method: 'PUT',
             headers: {
-                authorization: `Bearer ${localStorage.getItem('jwToken')}`
+                authorization: `bearer ${localStorage.getItem('jwToken')}`
             }
         })
             .then(res => res.json())

@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Checkmark } from 'react-checkmark'
+import toast from 'react-hot-toast';
+import Loader from '../../Shared/Loader/Loader';
 
 const ProductCard = ({ product, setProductInfo }) => {
+
+const[loading,setLoading]=useState(true)
+
+    const handleReport = (product) => {
+        console.log(product);
+
+        fetch(`http://localhost:5000/products/report/${product._id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('jwToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+        
+                if (data.modifiedCount) {
+                    toast.success(`${product.productName} reported Successfully`)
+                    setLoading(false)
+                }
+            })
+    }
+     
+    // if(loading){
+    //     return <Loader></Loader>
+    // }
 
     return (
 
@@ -21,7 +48,7 @@ const ProductCard = ({ product, setProductInfo }) => {
                     <span>Seller: {product.sellerName}</span>
 
                     {
-                        
+
                         <span className='mt-1'>
 
                             <Checkmark size='15px' color='blue' />
@@ -33,8 +60,15 @@ const ProductCard = ({ product, setProductInfo }) => {
                     <span>{product.location}</span>
                 </div>
                 <p>{product.date}</p>
-                <div className="card-actions justify-end">
-                    <label onClick={() => setProductInfo(product)} htmlFor="booking-modal" className="btn btn-info text-white font-semibold">Book Now</label>
+
+                {/* <div className="card-actions justify-start">
+                    <label className="btn btn-info text-white font-semibold">Report</label>
+                </div> */}
+                <div className="card-actions justify-between mt-2">
+
+                    <label onClick={() => handleReport(product)} className="btn btn-info text-white font-semibold">Report</label>
+
+                    <label onClick={() =>setProductInfo(product)} htmlFor="booking-modal" className="btn btn-info text-white font-semibold">Book Now</label>
                 </div>
             </div>
         </div>

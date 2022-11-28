@@ -3,13 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import ProductCard from '../../ProductCategories/ProductCard/ProductCard';
 import BookingModal from '../../BookingModal/BookingModal';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import Loader from '../../Shared/Loader/Loader';
 
 const AdvertiseProducts = () => {
 
     const [productInfo, setProductInfo] = useState(null)
     const{user}=useContext(AuthContext)
 
-    const { data: advertised = [], refetch } = useQuery({
+    const { data: advertised = [],isLoading } = useQuery({
 
         queryKey: ['advertised'],
 
@@ -25,8 +26,14 @@ const AdvertiseProducts = () => {
             return data;
         }
     })
+
     
-   refetch()
+    if(isLoading){
+        return <Loader></Loader>
+    }
+
+  
+
     return (
         <div className='mt-14'>
 

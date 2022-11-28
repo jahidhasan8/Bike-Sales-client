@@ -32,8 +32,6 @@ const BookingModal = ({ product,setProductInfo }) => {
 
         }
 
-
-
         fetch('http://localhost:5000/bookings', {
             method: 'POST',
             headers: {
@@ -80,6 +78,7 @@ const BookingModal = ({ product,setProductInfo }) => {
 
                             <input name='price' defaultValue={resalePrice} disabled type="text" placeholder="Product Price" className="input w-full input-bordered" />
                             <br />
+                            
                             <input className='btn btn-info w-full' type="submit" value="Submit" />
                         </form>
                     </div>
