@@ -1,10 +1,11 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const ReportedItems = () => {
 
 
-    const { data: products = [] } = useQuery({
+    const { data: products = [], refetch } = useQuery({
 
         queryKey: ['products'],
 
@@ -20,6 +21,27 @@ const ReportedItems = () => {
             return data;
         }
     })
+
+    const handleDeleteReportedProduct = (id) => {
+
+        fetch(`http://localhost:5000/products/${id}`, {
+
+            method: 'DELETE',
+
+            headers: {
+                authorization: `bearer ${localStorage.getItem('jwToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+
+                    refetch()
+                    toast.success('Reported Product deleted successfully')
+                }
+            })
+    }
+
 
     return (
         <div>
@@ -46,23 +68,13 @@ const ReportedItems = () => {
                             products?.length &&
                             products?.map((product, i) => <tr key={product._id}>
                                 <th>{i + 1}</th>
-                                <td>
-                                    {product.sellerEmail}
-                                </td>
+                                <td>{product.sellerEmail}</td>
                                 <td>{product.productName}</td>
                                 <td>{product.resalePrice}</td>
-                               
-                                <td>
-                                    {
-                                        
-                                            // <button disabled className='btn btn-sm font-bold '>Reported</button>
-                                            <p className='font-bold'>Reported</p>
-                                            
-                                    }
 
-                                </td>
+                                <td><p className='font-bold'>Reported</p></td>
                                 <td>
-                                    <button className='btn btn-error btn-sm'>Delete</button>
+                                    <button onClick={() => handleDeleteReportedProduct(product._id)} className='btn btn-error btn-sm'>Delete</button>
                                 </td>
                             </tr>
                             )
