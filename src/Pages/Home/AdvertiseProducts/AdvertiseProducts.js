@@ -18,9 +18,9 @@ const AdvertiseProducts = () => {
 
             const res = await fetch(`http://localhost:5000/products/advertised`, {
 
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('jwToken')}`
-                }
+                // headers: {
+                //     authorization: `bearer ${localStorage.getItem('jwToken')}`
+                // }
             });
             const data = await res.json();
             return data;

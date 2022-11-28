@@ -11,10 +11,10 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { logIn, googleLogin, updateUser } = useContext(AuthContext)
     const googleProvider = new GoogleAuthProvider()
-
-    const location = useLocation()
     const navigate = useNavigate()
     const [userEmail, setUserEmail] = useState('')
+
+    const location = useLocation()
     const [token] = useToken(userEmail)
 
     const from = location.state?.from?.pathname || '/'
