@@ -64,7 +64,7 @@ const AddProduct = () => {
                         date: formatDate
 
                     }
-                    console.log(product);
+                    
 
                     //  saving products to mongodb by post method
                     fetch('http://localhost:5000/products', {
@@ -87,9 +87,9 @@ const AddProduct = () => {
             })
     }
 
-    // if (isLoading) {
-    //     return <Loader></Loader>
-    // }
+    if (isLoading) {
+        return <Loader></Loader>
+    }
 
 
     return (

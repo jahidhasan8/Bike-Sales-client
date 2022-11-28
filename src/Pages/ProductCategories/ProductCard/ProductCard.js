@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Checkmark } from 'react-checkmark'
 import toast from 'react-hot-toast';
-import Loader from '../../Shared/Loader/Loader';
-// import Loader from '../../Shared/Loader/Loader';
+
 
 const ProductCard = ({ product, setProductInfo }) => {
 
