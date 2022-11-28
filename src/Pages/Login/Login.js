@@ -30,7 +30,7 @@ const Login = () => {
 
             .then(result => {
                 const user = result.user
-                console.log(user)
+                // console.log(user)
                 setUserEmail(data.email)
                 toast.success(' login successful')
 

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Checkmark } from 'react-checkmark'
 import toast from 'react-hot-toast';
-import Loader from '../../Shared/Loader/Loader';
+// import Loader from '../../Shared/Loader/Loader';
 
 const ProductCard = ({ product, setProductInfo }) => {
 
-const[loading,setLoading]=useState(true)
+    const [loading, setLoading] = useState(true)
 
     const handleReport = (product) => {
         console.log(product);
@@ -18,17 +18,14 @@ const[loading,setLoading]=useState(true)
         })
             .then(res => res.json())
             .then(data => {
-        
+
                 if (data.modifiedCount) {
                     toast.success(`${product.productName} reported Successfully`)
-                    setLoading(false)
+                    // setLoading(false)
                 }
             })
     }
-     
-    // if(loading){
-    //     return <Loader></Loader>
-    // }
+
 
     return (
 
@@ -49,11 +46,10 @@ const[loading,setLoading]=useState(true)
 
                     {
 
-                        <span className='mt-1'>
-
-                            <Checkmark size='15px' color='blue' />
-
-                        </span>
+                            <span  className='mt-1'>
+                                <Checkmark size='15px' color='blue' />
+                            </span>
+                       
                     }
 
                     <span>Mo: {product.mobile}</span>
@@ -61,14 +57,11 @@ const[loading,setLoading]=useState(true)
                 </div>
                 <p>{product.date}</p>
 
-                {/* <div className="card-actions justify-start">
-                    <label className="btn btn-info text-white font-semibold">Report</label>
-                </div> */}
                 <div className="card-actions justify-between mt-2">
 
                     <label onClick={() => handleReport(product)} className="btn btn-info text-white font-semibold">Report</label>
 
-                    <label onClick={() =>setProductInfo(product)} htmlFor="booking-modal" className="btn btn-info text-white font-semibold">Book Now</label>
+                    <label onClick={() => setProductInfo(product)} htmlFor="booking-modal" className="btn btn-info text-white font-semibold">Book Now</label>
                 </div>
             </div>
         </div>

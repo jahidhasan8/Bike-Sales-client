@@ -33,7 +33,7 @@ const AdvertiseProducts = () => {
     }
 
   
-
+    // advertised.length && 
     return (
         <div className='mt-14'>
 
@@ -46,7 +46,7 @@ const AdvertiseProducts = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12 mb-16 px-4'>
                 {
                      user?.email &&
-                    advertised.map(product => <ProductCard
+                    advertised?.map(product => <ProductCard
                         key={product._id}
                         product={product}
                         setProductInfo={setProductInfo}

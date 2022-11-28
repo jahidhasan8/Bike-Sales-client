@@ -14,7 +14,7 @@ const MyProducts = () => {
 
         queryFn: async () => {
 
-            const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {
+        const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {
 
                 headers: {
                     authorization: `bearer ${localStorage.getItem('jwToken')}`
@@ -87,7 +87,7 @@ const MyProducts = () => {
 
                         {
 
-                            products?.length &&
+                            // products?.length &&
                             products?.map((product, i) => <tr key={product._id}>
                                 <th>{i + 1}</th>
                                 <td>

@@ -86,9 +86,9 @@ const AddProduct = () => {
             })
     }
 
-    if (isLoading) {
-        return <Loader></Loader>
-    }
+    // if (isLoading) {
+    //     return <Loader></Loader>
+    // }
 
 
     return (
