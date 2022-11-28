@@ -13,7 +13,7 @@ const MyOrders = () => {
 
         queryFn: async () => {
 
-            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+            const res = await fetch(`https://assignment-12-server-five.vercel.app/bookings?email=${user?.email}`, {
 
                 headers: {
                     authorization: `bearer ${localStorage.getItem('jwToken')}`
@@ -45,35 +45,35 @@ const MyOrders = () => {
                     <tbody>
 
                         {
-                            
-                            bookings?.length?
-                            bookings?.map((booking, i) => <tr key={booking._id}>
-                                <th>{i + 1}</th>
-                                <td>
-                                    <div className="avatar">
-                                        <div className="w-24 rounded-full">
-                                            <img src={booking.image} alt="" />
+
+                            bookings?.length ?
+                                bookings?.map((booking, i) => <tr key={booking._id}>
+                                    <th>{i + 1}</th>
+                                    <td>
+                                        <div className="avatar">
+                                            <div className="w-24 rounded-full">
+                                                <img src={booking.image} alt="" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>{booking.productName}</td>
-                                <td>{booking.price}</td>
-                                <td>
-                                  {
-                                    booking?.price && !booking.paid &&
-                                    <Link to={`/dashboard/payment/${booking._id}`}><button  className='btn btn-info btn-sm'>Pay</button></Link>
-                                    
-                                    }
-                                    {
-                                        booking?.price && booking.paid &&
-                                        <button disabled className='btn btn-sm btn-info'>Paid</button>
-                                    }
-                                   
-                                </td>
-                            </tr>
-                            )
-                            :
-                            <></>
+                                    </td>
+                                    <td>{booking.productName}</td>
+                                    <td>{booking.price}</td>
+                                    <td>
+                                        {
+                                            booking?.price && !booking.paid &&
+                                            <Link to={`/dashboard/payment/${booking._id}`}><button className='btn btn-info btn-sm'>Pay</button></Link>
+
+                                        }
+                                        {
+                                            booking?.price && booking.paid &&
+                                            <button disabled className='btn btn-sm btn-info'>Paid</button>
+                                        }
+
+                                    </td>
+                                </tr>
+                                )
+                                :
+                                <></>
                         }
 
                     </tbody>

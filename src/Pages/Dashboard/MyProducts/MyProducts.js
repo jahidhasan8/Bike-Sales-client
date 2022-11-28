@@ -14,7 +14,7 @@ const MyProducts = () => {
 
         queryFn: async () => {
 
-        const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {
+            const res = await fetch(`https://assignment-12-server-five.vercel.app/products?email=${user?.email}`, {
 
                 headers: {
                     authorization: `bearer ${localStorage.getItem('jwToken')}`
@@ -28,7 +28,7 @@ const MyProducts = () => {
     const handleAdvertiseProduct = (product) => {
         console.log(product);
 
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://assignment-12-server-five.vercel.app/products/${product._id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('jwToken')}`
@@ -46,7 +46,7 @@ const MyProducts = () => {
 
     const handleDeleteProduct = (product) => {
 
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://assignment-12-server-five.vercel.app/products/${product._id}`, {
 
             method: 'DELETE',
 
@@ -103,9 +103,9 @@ const MyProducts = () => {
 
                                     {
                                         product?.sold ?
-                                        <p className='font-bold'>Sold</p>
-                                        :
-                                        <p className='font-bold'>Available</p>
+                                            <p className='font-bold'>Sold</p>
+                                            :
+                                            <p className='font-bold'>Available</p>
                                     }
                                 </td>
                                 <td>
@@ -118,7 +118,7 @@ const MyProducts = () => {
 
                                 </td>
                                 <td>
-                                    <button onClick={()=>handleDeleteProduct(product)} className='btn btn-error btn-sm'>Delete</button>
+                                    <button onClick={() => handleDeleteProduct(product)} className='btn btn-error btn-sm'>Delete</button>
                                 </td>
                             </tr>
                             )

@@ -9,7 +9,7 @@ const ProductCard = ({ product, setProductInfo }) => {
     const handleReport = (product) => {
         console.log(product);
 
-        fetch(`http://localhost:5000/products/report/${product._id}`, {
+        fetch(`https://assignment-12-server-five.vercel.app/products/report/${product._id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('jwToken')}`
@@ -20,11 +20,11 @@ const ProductCard = ({ product, setProductInfo }) => {
 
                 if (data.modifiedCount) {
                     toast.success(`${product.productName} reported Successfully`)
-                    
+
                 }
             })
-    } 
-  
+    }
+
 
     return (
 

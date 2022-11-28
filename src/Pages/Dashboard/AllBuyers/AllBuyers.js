@@ -11,7 +11,7 @@ const AllBuyers = () => {
         queryKey: ['users'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/users?accountType=${'buyer'}`, {
+                const res = await fetch(`https://assignment-12-server-five.vercel.app/users?accountType=${'buyer'}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('jwToken')}`
                     }

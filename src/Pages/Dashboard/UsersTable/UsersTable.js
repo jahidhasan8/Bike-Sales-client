@@ -12,7 +12,7 @@ const UsersTable = ({ users, refetch }) => {
 
     const handleDelete = (user) => {
 
-        fetch(`http://localhost:5000/users/${user._id}`, {
+        fetch(`https://assignment-12-server-five.vercel.app/users/${user._id}`, {
 
             method: 'DELETE',
 
@@ -35,7 +35,7 @@ const UsersTable = ({ users, refetch }) => {
     const handleVerifySeller = (id) => {
         console.log(id);
 
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://assignment-12-server-five.vercel.app/users/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('jwToken')}`
@@ -78,7 +78,7 @@ const UsersTable = ({ users, refetch }) => {
 
 
                                     {
-                                        user.accountType==='seller' &&
+                                        user.accountType === 'seller' &&
                                         <>
                                             {
                                                 user.accountType === 'seller' && user.verify ?

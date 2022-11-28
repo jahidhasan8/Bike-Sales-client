@@ -20,7 +20,7 @@ const AddProduct = () => {
 
         queryFn: async () => {
 
-            const res = await fetch('http://localhost:5000/categories')
+            const res = await fetch('https://assignment-12-server-five.vercel.app/categories')
             const data = await res.json()
             return data
         }
@@ -64,10 +64,10 @@ const AddProduct = () => {
                         date: formatDate
 
                     }
-                    
+
 
                     //  saving products to mongodb by post method
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://assignment-12-server-five.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -77,7 +77,7 @@ const AddProduct = () => {
                     })
                         .then(res => res.json())
                         .then(result => {
-                            
+
                             toast.success('product added successfully')
                             navigate('/dashboard/myproducts')
 

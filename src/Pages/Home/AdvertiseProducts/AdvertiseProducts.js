@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import ProductCard from '../../ProductCategories/ProductCard/ProductCard';
 import BookingModal from '../../BookingModal/BookingModal';
@@ -8,13 +8,13 @@ const AdvertiseProducts = () => {
 
     const [productInfo, setProductInfo] = useState(null)
 
-    const { data: advertised = [],isLoading } = useQuery({
+    const { data: advertised = [], isLoading } = useQuery({
 
         queryKey: ['advertised'],
 
         queryFn: async () => {
 
-            const res = await fetch(`http://localhost:5000/products/advertised`, {
+            const res = await fetch(`https://assignment-12-server-five.vercel.app/products/advertised`, {
 
             });
             const data = await res.json();
@@ -22,29 +22,29 @@ const AdvertiseProducts = () => {
         }
     })
 
-    
-    if(isLoading){
+
+    if (isLoading) {
         return <Loader></Loader>
     }
 
-  
-    
+
+
     return (
         <div className='mt-14'>
 
             {
-                
+
                 advertised.length &&
                 <h2 className='text-xl font-bold text-center'>Advertised products are</h2>
-                
-                
+
+
             }
-            
+
 
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12 mb-16 px-4'>
                 {
-                    
+
                     advertised?.map(product => <ProductCard
                         key={product._id}
                         product={product}
@@ -52,7 +52,7 @@ const AdvertiseProducts = () => {
                     >
 
                     </ProductCard>)
-                    
+
 
                 }
             </div>

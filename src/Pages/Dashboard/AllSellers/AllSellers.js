@@ -10,7 +10,7 @@ const AllSellers = () => {
         queryKey: ['users'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/users?accountType=${'seller'}`, {
+                const res = await fetch(`https://assignment-12-server-five.vercel.app/users?accountType=${'seller'}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('jwToken')}`
                     }

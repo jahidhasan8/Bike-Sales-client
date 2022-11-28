@@ -20,41 +20,41 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 
 
-export const router=createBrowserRouter([
+export const router = createBrowserRouter([
     {
-        path:'/',
-        element:<Main></Main>,
-        errorElement:<ErrorPage></ErrorPage>,
-        children:[
+        path: '/',
+        element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
+        children: [
 
             {
-                path:'/',
-                element:<Home></Home>
+                path: '/',
+                element: <Home></Home>
             },
             {
-                path:'/login',
-                element:<Login></Login>
+                path: '/login',
+                element: <Login></Login>
             },
             {
-                path:'/signup',
-                element:<Signup></Signup>
+                path: '/signup',
+                element: <Signup></Signup>
             },
             {
-                path:'/blog',
-                element:<Blog></Blog>
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
-                path:'/products/:id',
-                element:<PrivateRoute><Products></Products></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                path: '/products/:id',
+                element: <PrivateRoute><Products></Products></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://assignment-12-server-five.vercel.app/products/${params.id}`)
             },
-            
+
         ]
     },
     {
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-        errorElement:<ErrorPage></ErrorPage>,
+        errorElement: <ErrorPage></ErrorPage>,
 
         children: [
             {
@@ -73,12 +73,12 @@ export const router=createBrowserRouter([
                 path: '/dashboard/myproducts',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
-    
+
             {
                 path: '/dashboard/allsellers',
                 element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
-    
+
             {
                 path: '/dashboard/allbuyers',
                 element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
@@ -90,10 +90,10 @@ export const router=createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader:({params})=> fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://assignment-12-server-five.vercel.app/bookings/${params.id}`)
             },
-    
-           
+
+
         ]
     }
 ])

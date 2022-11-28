@@ -9,11 +9,11 @@ import useToken from '../../hooks/useToken';
 const Signup = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const { createUser,updateUser } = useContext(AuthContext)
+    const { createUser, updateUser } = useContext(AuthContext)
     const [userEmail, setUserEmail] = useState('')
     const navigate = useNavigate()
     const [token] = useToken(userEmail)
-    
+
     if (token) {
         navigate('/')
     }
@@ -30,7 +30,7 @@ const Signup = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUserInfo(data.name, data.email,data.accountType)
+                        saveUserInfo(data.name, data.email, data.accountType)
 
                     })
                     .catch(error => toast.error(error.message))
@@ -38,18 +38,18 @@ const Signup = () => {
 
             .catch(error => {
                 toast.error(error.message)
-                
+
             })
     }
-    
-    const saveUserInfo = (name, email,accountType) => {
-        const user = { name, email,accountType }
-    
-        fetch('http://localhost:5000/users', {
+
+    const saveUserInfo = (name, email, accountType) => {
+        const user = { name, email, accountType }
+
+        fetch('https://assignment-12-server-five.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
-                
+
             },
             body: JSON.stringify(user)
         })

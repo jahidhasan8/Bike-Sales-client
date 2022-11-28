@@ -7,14 +7,14 @@ const useAccount = email => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/account/${email}`,{
-                headers:{
-                    authorization:`bearer ${localStorage.getItem('jwToken')}`
+            fetch(`https://assignment-12-server-five.vercel.app/users/account/${email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('jwToken')}`
                 }
             })
                 .then(res => res.json())
                 .then(data => {
-                
+
                     setAccount(data.account)
                     setIsLoading(false)
                 })

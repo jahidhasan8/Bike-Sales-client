@@ -10,11 +10,11 @@ const CheckoutForm = ({ bookingData }) => {
     const [loading, setLoading] = useState(false)
     const stripe = useStripe();
     const elements = useElements();
-    const { price,productName,productId,email,_id } = bookingData
+    const { price, productName, productId, email, _id } = bookingData
     const [clientSecret, setClientSecret] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://assignment-12-server-five.vercel.app/create-payment-intent", {
 
             method: "POST",
             headers: {
@@ -62,55 +62,55 @@ const CheckoutForm = ({ bookingData }) => {
         setSuccessMessage('')
         setLoading(true)
 
-        const { paymentIntent, error:confirmError } = await stripe.confirmCardPayment(
-           clientSecret,
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+            clientSecret,
             {
                 payment_method: {
                     card: card,
                     billing_details: {
                         name: productName,
-                        email:email,
-                    
+                        email: email,
+
                     },
                 },
             },
         );
 
-        if(confirmError){
-             setError(confirmError.message)
+        if (confirmError) {
+            setError(confirmError.message)
             toast.error(confirmError.message)
             return
         }
 
-        if (paymentIntent.status === 'succeeded'){
-            
-            const payment={
+        if (paymentIntent.status === 'succeeded') {
+
+            const payment = {
                 price,
-                transactionId:paymentIntent.id,
-                bookingId:_id,
+                transactionId: paymentIntent.id,
+                bookingId: _id,
                 email,
                 productId
 
             }
-            fetch('http://localhost:5000/payments',{
-                method:'POST',
-                headers:{
+            fetch('https://assignment-12-server-five.vercel.app/payments', {
+                method: 'POST',
+                headers: {
                     'content-type': 'application/json',
-                    authorization:`bearer ${localStorage.getItem('jwToken')}`
+                    authorization: `bearer ${localStorage.getItem('jwToken')}`
                 },
                 body: JSON.stringify(payment)
             })
-            .then(res=>res.json())
-            .then(data=>{
-                if(data.insertedId){
-                    setSuccessMessage('Your Payment Successful')
-                    setTransactionId(paymentIntent.id)
-                    toast.success('Your Payment Successful')
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        setSuccessMessage('Your Payment Successful')
+                        setTransactionId(paymentIntent.id)
+                        toast.success('Your Payment Successful')
+                    }
+                })
         }
         setLoading(false)
-    
+
 
     }
 
@@ -145,7 +145,7 @@ const CheckoutForm = ({ bookingData }) => {
                     <p>Your transactionId is <span className='font-bold'>{transactionId}</span></p>
                 </div>
             }
-            
+
         </div>
     );
 };

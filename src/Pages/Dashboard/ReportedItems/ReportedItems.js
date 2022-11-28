@@ -11,7 +11,7 @@ const ReportedItems = () => {
 
         queryFn: async () => {
 
-            const res = await fetch('http://localhost:5000/products/reported', {
+            const res = await fetch('https://assignment-12-server-five.vercel.app/products/reported', {
 
                 headers: {
                     authorization: `bearer ${localStorage.getItem('jwToken')}`
@@ -24,7 +24,7 @@ const ReportedItems = () => {
 
     const handleDeleteReportedProduct = (id) => {
 
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://assignment-12-server-five.vercel.app/products/${id}`, {
 
             method: 'DELETE',
 
