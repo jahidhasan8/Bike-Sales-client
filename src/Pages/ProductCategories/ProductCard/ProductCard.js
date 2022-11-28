@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Checkmark } from 'react-checkmark'
 import toast from 'react-hot-toast';
+import Loader from '../../Shared/Loader/Loader';
 // import Loader from '../../Shared/Loader/Loader';
 
 const ProductCard = ({ product, setProductInfo }) => {
 
-    const [loading, setLoading] = useState(true)
 
     const handleReport = (product) => {
         console.log(product);
@@ -21,11 +21,11 @@ const ProductCard = ({ product, setProductInfo }) => {
 
                 if (data.modifiedCount) {
                     toast.success(`${product.productName} reported Successfully`)
-                    // setLoading(false)
+                    
                 }
             })
-    }
-
+    } 
+  
 
     return (
 
@@ -46,10 +46,10 @@ const ProductCard = ({ product, setProductInfo }) => {
 
                     {
 
-                            <span  className='mt-1'>
-                                <Checkmark size='15px' color='blue' />
-                            </span>
-                       
+                        <span className='mt-1'>
+                            <Checkmark size='15px' color='blue' />
+                        </span>
+
                     }
 
                     <span>Mo: {product.mobile}</span>

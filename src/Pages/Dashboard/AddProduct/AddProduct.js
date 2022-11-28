@@ -26,7 +26,7 @@ const AddProduct = () => {
         }
     })
     const handleAddProduct = (data) => {
-        console.log(data);
+        // console.log(data);
         let date = new Date()
         let options = {
             weekday: "long", year: "numeric", month: "short",
@@ -58,12 +58,13 @@ const AddProduct = () => {
                         resalePrice: data.resalePrice,
                         purchaseYear: data.purchaseYear,
                         location: data.location,
-                        categoryId: data.category,
+                        categoryId: data.categoryId,
                         description: data.description,
                         image: imageData.data.url,
                         date: formatDate
 
                     }
+                    console.log(product);
 
                     //  saving products to mongodb by post method
                     fetch('http://localhost:5000/products', {
@@ -76,7 +77,7 @@ const AddProduct = () => {
                     })
                         .then(res => res.json())
                         .then(result => {
-                            console.log(result);
+                            
                             toast.success('product added successfully')
                             navigate('/dashboard/myproducts')
 
@@ -183,7 +184,7 @@ const AddProduct = () => {
                     <label className="label">
                         <span className="label-text">Category</span>
                     </label>
-                    <select {...register('category')} className="select  input-bordered w-full max-w-xs">
+                    <select {...register('categoryId')} className="select  input-bordered w-full max-w-xs">
                         <option disabled >Please select a Category</option>
                         {
                             categories.map(category => <option key={category._id}

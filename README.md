@@ -2,7 +2,9 @@
 
 Bike Sales is a platform on which you can buy and sell secondHand Bike.Right now we have three categories Bike.At Bike Sales, we make it so easy to connect people to buy, sell. - Fast & Easy Experience: Navigated buying and selling experience in Bangladesh which is simpler, faster, and easier. Shop and sell on the go and get your desired products in just a few clicks.
 
+## `adminEmail: admin@gmail.com`
 
+## `adminPassword: 123456`
 
 ## About This Project
 

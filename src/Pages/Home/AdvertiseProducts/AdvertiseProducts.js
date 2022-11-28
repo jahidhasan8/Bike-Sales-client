@@ -39,9 +39,13 @@ const AdvertiseProducts = () => {
 
             {
                 user?.email &&
-                advertised.length && 
+                advertised.length &&
                 <h2 className='text-xl font-bold text-center'>Advertised products are</h2>
+                
+                
             }
+            
+
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12 mb-16 px-4'>
                 {
@@ -53,6 +57,7 @@ const AdvertiseProducts = () => {
                     >
 
                     </ProductCard>)
+                    
 
                 }
             </div>
