@@ -3,6 +3,7 @@ import ProductCategories from '../../ProductCategories/ProductCategories/Product
 import About from '../About/About';
 import AdvertiseProducts from '../AdvertiseProducts/AdvertiseProducts';
 import Banner from '../Banner/Banner';
+import BannerShop from '../component/BannerShop';
 import Clients from '../component/Clients';
 import Discount from '../component/Discount';
 
@@ -14,6 +15,7 @@ const Home = () => {
             <ProductCategories></ProductCategories>
             <Discount></Discount>
             <Clients></Clients>
+            <BannerShop></BannerShop>
             <About></About>
         </div>
     );
