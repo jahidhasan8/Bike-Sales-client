@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import Loader from '../Loader/Loader';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
@@ -11,10 +13,37 @@ const Navbar = () => {
             .then(() => { })
             .catch(error => toast.error(error.message))
     }
+
+    const [categories, setCategories] = useState([])
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+
+        axios.get('https://assignment-12-server-five.vercel.app/categories')
+            .then(data => {
+
+                setCategories(data.data)
+                setLoading(false)
+
+            })
+            .catch((error) => {
+                toast.error(error.message);
+            });
+    }, [])
+
+    if (loading) {
+        return <Loader></Loader>
+    }
+
     const navMenu = <>
         <li><Link   to='/'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
-       
+    
+        { 
+	categories.length > 0 && 
+    categories.map( category => <li key={category._id}>
+			<Link to={`/products/${category._id}`} className={'rounded-xl capitalize'}> {category.name}</Link>
+			</li> )
+	}
 
         {
             user?.uid ?
