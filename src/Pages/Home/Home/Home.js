@@ -3,6 +3,7 @@ import ProductCategories from '../../ProductCategories/ProductCategories/Product
 import About from '../About/About';
 import AdvertiseProducts from '../AdvertiseProducts/AdvertiseProducts';
 import Banner from '../Banner/Banner';
+import Clients from '../component/Clients';
 import Discount from '../component/Discount';
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
             <AdvertiseProducts></AdvertiseProducts>
             <ProductCategories></ProductCategories>
             <Discount></Discount>
+            <Clients></Clients>
             <About></About>
         </div>
     );
