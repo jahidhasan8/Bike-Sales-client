@@ -8,7 +8,7 @@ const About = () => {
                     <img src="https://i.ibb.co/Ph7vjCn/red-motor-biking-road.jpg" alt="" className=" rounded-lg shadow-2xl md:w-11/12 h-full" />
                 </div>
                 <div className='md:w-1/2'>
-                    <p className="text-3xl  font-bold">
+                    <p className="text-4xl  font-bold">
                         About Us
                     </p>
                     <h1 className=" my-5 text-2xl font-bold">Bike Sales is The Largest Resale Marketplace in Bangladesh!</h1>

@@ -6,6 +6,7 @@ import Banner from '../Banner/Banner';
 import BannerShop from '../component/BannerShop';
 import Clients from '../component/Clients';
 import Discount from '../component/Discount';
+import Offer from '../component/Offer';
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
             <Discount></Discount>
             <Clients></Clients>
             <BannerShop></BannerShop>
+            <Offer></Offer>
             <About></About>
         </div>
     );
