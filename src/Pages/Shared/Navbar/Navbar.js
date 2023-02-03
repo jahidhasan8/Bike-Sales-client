@@ -56,7 +56,7 @@ const Navbar = () => {
         }
     </>
     return (
-        <div className="navbar flex justify-between  bg-slate-600 md:text-white font-bold">
+        <div className="navbar flex justify-between   text-black font-bold">
             <div className="navbar-start ">
                 <div className="dropdown ">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">
@@ -66,7 +66,7 @@ const Navbar = () => {
                         {navMenu}
                     </ul>
                 </div>
-                <Link to='/' className="btn btn-ghost normal-case text-2xl font-bold text-white">Bike Sales</Link>
+                <Link to='/' className="btn btn-ghost normal-case text-4xl font-bold text-black">Bike Sales</Link>
             </div>
             <div className="navbar-center hidden lg:flex ">
                 <ul className="menu menu-horizontal p-0">
