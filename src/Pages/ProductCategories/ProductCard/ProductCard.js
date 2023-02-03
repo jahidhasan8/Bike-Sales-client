@@ -46,7 +46,7 @@ const ProductCard = ({ product, setProductInfo }) => {
                     {
 
                         <span className='mt-1'>
-                            <Checkmark size='15px' color='blue' />
+                            <Checkmark size='15px' color='cyan' />
                         </span>
 
                     }

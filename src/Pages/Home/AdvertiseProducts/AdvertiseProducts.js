@@ -35,7 +35,7 @@ const AdvertiseProducts = () => {
             {
 
                 advertised.length &&
-                <h2 className='text-xl font-bold text-center'>Advertised products are</h2>
+                <h2 className='text-3xl font-bold text-center'>Advertised products are</h2>
 
 
             }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaMotorcycle } from "react-icons/fa";
+import { FaMotorcycle,FaMoneyCheckAlt,FaServicestack } from "react-icons/fa";
 const Offer = () => {
     return (
         <div className="hero my-20">
@@ -24,7 +24,7 @@ const Offer = () => {
 
                    <div className='flex justify-between mt-8'>
                      <div className='text-4xl avatar text-white rounded-full p-2 bg-info  '>
-                       <FaMotorcycle/>
+                       <FaMoneyCheckAlt/>
                      </div>
                      <div>
                         <h1 className='font-bold text-xl'>Financing</h1>
@@ -35,7 +35,7 @@ const Offer = () => {
 
                    <div className='flex justify-between mt-8'>
                      <div className='text-4xl text-white rounded-full bg-info p-2 '>
-                       <FaMotorcycle/>
+                       <FaServicestack/>
                      </div>
                      <div className=''>
                         <h1 className='font-bold text-xl'>Trade-In Service</h1>
