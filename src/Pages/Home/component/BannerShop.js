@@ -5,7 +5,7 @@ import { BiBadgeCheck } from "react-icons/bi";
 import { GiReturnArrow } from "react-icons/gi";
 const BannerShop = () => {
     return (
-        <section className='bg-neutral text-white py-20'>
+        <section className='bg-[#3abff8] text-white py-20'>
             <div className=" container mx-auto">
 	<div className="px-2">
 		<div className="flex flex-col lg:flex-row items-center justify-center space-y-4 lg:justify-between ">
