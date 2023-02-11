@@ -5,7 +5,8 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
 import useToken from '../../hooks/useToken';
-
+import Lottie from "lottie-react";
+import login from '../../login.json'
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -84,7 +85,11 @@ const Login = () => {
     }
 
     return (
-        <div className="h-[600px] flex justify-center items-center text-slate-600">
+        <div className="h-[600px] lg:flex md:flex-row-reverse justify-center items-center  text-slate-600 mb-44">
+
+<div className="text-center">
+   <Lottie animationData={login} />
+                </div>
             <div className='w-96 p-7'>
                 <h2 className='text-3xl text-center'>Login</h2>
 
