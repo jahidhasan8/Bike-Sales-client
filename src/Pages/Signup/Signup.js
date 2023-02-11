@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
-
+import Lottie from "lottie-react";
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../hooks/useToken';
+import signup from '../../signup.json'
 
 const Signup = () => {
 
@@ -61,7 +62,13 @@ const Signup = () => {
     }
 
     return (
-        <div className="h-[600px] flex justify-center items-center text-slate-600">
+        <div className="h-[600px] lg:flex justify-evenly items-center text-slate-600 lg:mb-0 mb-96">
+
+            
+<div className="text-center lg:text-left w-96">
+   <Lottie animationData={signup} />
+                </div>
+
             <div className='w-96 p-7'>
                 <h2 className='text-3xl text-center'>Signup</h2>
 

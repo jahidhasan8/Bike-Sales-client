@@ -85,9 +85,9 @@ const Login = () => {
     }
 
     return (
-        <div className="h-[600px] lg:flex md:flex-row-reverse justify-center items-center  text-slate-600 mb-44">
+        <div className="h-[600px] lg:flex justify-evenly items-center text-slate-600 mb-44 ">
 
-<div className="text-center">
+<div className="text-center lg:text-left">
    <Lottie animationData={login} />
                 </div>
             <div className='w-96 p-7'>
