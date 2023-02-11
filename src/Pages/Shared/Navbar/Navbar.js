@@ -35,15 +35,15 @@ const Navbar = () => {
     }
 
     const navMenu = <>
-        <li><Link   to='/'>Home</Link></li>
+        <li><Link to='/'>Home</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
-    
-        { 
-	categories.length > 0 && 
-    categories.map( category => <li key={category._id}>
-			<Link to={`/products/${category._id}`} className={'rounded-xl capitalize'}> {category.name}</Link>
-			</li> )
-	}
+
+        {
+            categories.length > 0 &&
+            categories.map(category => <li key={category._id}>
+                <Link to={`/products/${category._id}`} className={'rounded-xl capitalize'}> {category.name}</Link>
+            </li>)
+        }
 
         {
             user?.uid ?
@@ -56,7 +56,7 @@ const Navbar = () => {
         }
     </>
     return (
-        <div className="navbar flex justify-between   text-black font-bold">
+        <div className="navbar flex rounded-md justify-between bg-[#3abff8]  text-black font-bold">
             <div className="navbar-start ">
                 <div className="dropdown ">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">
